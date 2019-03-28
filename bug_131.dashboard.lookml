@@ -1,6 +1,6 @@
 - dashboard: bug_131_
   title: 'bug 131 '
-  layout: newspaper
+  layout: static
   elements:
   - name: 30+ columns
     title: 30+ columns
