@@ -22,5 +22,7 @@
     query_timezone: America/Los_Angeles
     row: 0
     col: 0
-    width: 24
-    height: 6
+    height: 1
+    width: 12
+    top: 0
+    left: 0
