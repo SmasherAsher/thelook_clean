@@ -1,6 +1,7 @@
 - dashboard: bug_131_
   title: 'bug 131 '
   layout: static
+  tile_size: 100
   elements:
   - name: 30+ columns
     title: 30+ columns
