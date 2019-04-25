@@ -37,6 +37,11 @@ view: order_items {
     type: number
     sql: ${TABLE}.sale_price ;;
   }
+  measure: total_sale_price {
+    type: sum
+    sql: ${sale_price}/1000.0 ;;
+    value_format_name: decimal_2
+  }
 
   measure: count {
     type: count
