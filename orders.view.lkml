@@ -26,6 +26,10 @@ view: orders {
 
   measure: count {
     type: count
+    filters: {
+      field: status
+      value: "-'NULL'"
+    }
     drill_fields: [detail*]
   }
 

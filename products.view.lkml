@@ -11,6 +11,10 @@ view: products {
     type: string
     sql: ${TABLE}.brand ;;
   }
+  parameter: p {}
+  dimension: parameter_taker {
+    sql: {% parameter p %} ;;
+  }
 
   dimension: category {
     type: string

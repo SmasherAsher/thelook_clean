@@ -11,6 +11,8 @@ datagroup: thelook_clean_default_datagroup {
 
 persist_with: thelook_clean_default_datagroup
 
+explore: derived_base {}
+explore: derived_extended {}
 
 explore: order_items {
   hidden: yes
@@ -25,11 +27,7 @@ explore: order_items {
     sql_on: ${order_items.order_id} = ${orders.id} ;;
     relationship: many_to_one
   }
-  join: orders_derived {
-    type: left_outer
-    sql_on: ${order_items.order_id} = ${orders_derived.id} ;;
-    relationship: many_to_one
-  }
+
 
   join: products {
     type: left_outer
