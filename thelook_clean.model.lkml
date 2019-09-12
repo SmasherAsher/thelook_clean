@@ -11,8 +11,8 @@ datagroup: thelook_clean_default_datagroup {
 
 persist_with: thelook_clean_default_datagroup
 
-explore: derived_base {}
-explore: derived_extended {}
+explore: derived_base { hidden: yes}
+explore: derived_extended { hidden: yes}
 
 explore: order_items {
   hidden: yes
