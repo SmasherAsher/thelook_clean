@@ -72,6 +72,56 @@ view: users {
     drill_fields: [detail*]
   }
 
+  measure: count_adams {
+    label: "Count Adams (Rie Method)"
+    type: sum
+    sql: CASE WHEN ${email} LIKE '%adam.%' THEN 1 ELSE 0 END ;;
+    drill_fields: [email]
+  }
+
+  measure: count_adams2 {
+    label: "Count Adams (Sam Method)"
+    type: count_distinct
+    sql: ${id} ;;
+    filters: {
+      field: email
+      value: "%adam.%"
+    }
+    drill_fields: [email]
+  }
+
+# measure: count_total {
+#   type: count_distinct
+#   sql: ${email}  ;;
+# }
+
+
+  measure: count_categories {
+    label: "Count of categories for this email address"
+    type: number
+   # required_fields: [email]
+    sql:  {% if users.email._is_selected %}
+    (SELECT count(products.category) as c FROM demo_db.order_items  AS order_items
+LEFT JOIN demo_db.inventory_items  AS inventory_items ON order_items.inventory_item_id = inventory_items.id
+LEFT JOIN demo_db.orders  AS orders ON order_items.order_id = orders.id
+LEFT JOIN demo_db.products  AS products ON inventory_items.product_id = products.id
+LEFT JOIN demo_db.users  AS users ON orders.user_id = users.id
+WHERE users.email = `users.email`
+)
+{% else %}
+-1
+{% endif %}
+;;
+
+html: {% if value == -1 %}
+Please select users.email in order to use this field.
+{% else %}
+{{value}}
+{% endif %}
+
+;;
+  }
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
