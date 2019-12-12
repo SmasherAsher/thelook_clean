@@ -6,7 +6,19 @@ view: orders {
     type: number
     sql: ${TABLE}.id ;;
   }
+ parameter: pivot_selector {
+   type: string
+  allowed_value: {label:"Brand" value:"Brand"}
+  allowed_value: {label:"Category" value:"Category"}
+ }
 
+dimension: pivot_acceptor {
+  type: string
+  label_from_parameter: pivot_selector
+  sql: CASE WHEN {% parameter pivot_selector %} = 'Brand' THEN ${products.brand}
+  ELSE ${products.category}
+  END;;
+}
   dimension_group: created {
     type: time
 
