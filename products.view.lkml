@@ -50,4 +50,43 @@ view: products {
     type: count
     drill_fields: [id, item_name, inventory_items.count]
   }
+
+  dimension: dummy_three {
+    label: " "
+    case: {
+
+
+      when: {
+        label: "ACORN Skus"
+        sql: 1=1 ;;
+      }
+      when: {
+        label: "Bench Skus"
+        sql: 1=1 ;;
+      }
+
+    }
+  }
+
+  measure: ACORN_skus {
+    type: sum
+    filters: [brand: "ACORN"]
+    sql: ${sku} ;;
+  }
+  measure: ACORN_ids {
+    type: count_distinct
+    filters: [brand: "ACORN"]
+    sql: ${id} ;;
+  }
+  measure: Bench_skus {
+    type: sum
+    filters: [brand: "Bench"]
+    sql: ${sku} ;;
+  }
+
+  measure: Bench_ids {
+    type: count_distinct
+    filters: [brand: "Bench"]
+    sql: ${id} ;;
+  }
 }
