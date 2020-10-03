@@ -10,6 +10,8 @@ view: products {
   dimension: brand {
     type: string
     sql: ${TABLE}.brand ;;
+    html: <p> Here is the </p>
+    {{ rendered_value | replace: "106Shades", "<a href=\"google.com\"> Link </a>" }} ;;
   }
   parameter: p {}
   dimension: parameter_taker {
