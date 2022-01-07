@@ -57,6 +57,11 @@ view: users {
     sql: ${TABLE}.last_name ;;
   }
 
+  dimension: me {
+    type: string
+    sql:  {{ _user_attributes['first_name'] | sql_quote }} ;;
+  }
+
   dimension: state {
     type: string
     sql: ${TABLE}.state ;;
