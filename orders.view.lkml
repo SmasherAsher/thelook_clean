@@ -25,10 +25,23 @@ dimension: pivot_acceptor {
     sql: ${TABLE}.created_at ;;
   }
 
+  dimension: future {
+    type: date
+    sql:DATE_ADD(${created_raw},INTERVAL 89 day) ;;
+  }
+
+  dimension_group: diff {
+    type: duration
+    sql_start: ${created_date} ;;
+    sql_end: ${future} ;;
+  }
+
   dimension: status {
     type: string
+    view_label: "Orders"
     sql: ${TABLE}.status ;;
   }
+
 
   dimension: user_id {
     type: number

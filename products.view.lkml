@@ -11,16 +11,30 @@ view: products {
     type: string
     sql: ${TABLE}.brand ;;
     html: <p> Here is the </p>
-    {{ rendered_value | replace: "106Shades", "<a href=\"google.com\"> Link </a>" }} ;;
+    {{ value | replace: "106Shades", '<a href="https://google.com"> Link </a>' }} ;;
   }
-  parameter: p {}
+
+  dimension: brand_image {
+    type: string
+    sql: ${brand} ;;
+    html: <img src="https://feeling-lucky-looker.herokuapp.com/api.php?q={{value}}" ;;
+  }
+
+
+  parameter: p {type: unquoted}
+
   dimension: parameter_taker {
-    sql: {% parameter p %} ;;
+    sql: "{% parameter p %}" ;;
   }
 
   dimension: category {
     type: string
     sql: ${TABLE}.category ;;
+  }
+
+  dimension: is_sweaters {
+    type: yesno
+    sql: ${category} = 'Sweaters' ;;
   }
 
   dimension: department {
