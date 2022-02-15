@@ -11,6 +11,11 @@ datagroup: thelook_clean_default_datagroup {
 
 persist_with: thelook_clean_default_datagroup
 
+access_grant: is_sam {
+  user_attribute: id
+  allowed_values: ["306"]
+}
+
 explore: derived_base { hidden: yes}
 explore: derived_extended { hidden: yes}
 
@@ -40,4 +45,11 @@ explore: order_items {
     sql_on: ${orders.user_id} = ${users.id} ;;
     relationship: many_to_one
   }
+
+}
+
+explore: sam_order_items {
+  extends: [order_items]
+  view_name: order_items
+  required_access_grants: [is_sam]
 }
