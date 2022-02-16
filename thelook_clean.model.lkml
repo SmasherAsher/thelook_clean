@@ -11,10 +11,10 @@ datagroup: thelook_clean_default_datagroup {
 
 persist_with: thelook_clean_default_datagroup
 
-access_grant: is_sam {
-  user_attribute: id
-  allowed_values: ["306", "927"]
-}
+# access_grant: is_sam {
+#   user_attribute: id
+#   allowed_values: ["306", "927"]
+# }
 
 explore: derived_base { hidden: yes}
 explore: derived_extended { hidden: yes}
