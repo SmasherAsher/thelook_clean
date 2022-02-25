@@ -51,5 +51,5 @@ explore: order_items {
 explore: sam_order_items {
   extends: [order_items]
   view_name: order_items
- # required_access_grants: [is_sam]
+  required_access_grants: [is_sam]
 }
