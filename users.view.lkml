@@ -1,5 +1,5 @@
 view: users {
-  sql_table_name: demo_db.users ;;
+  sql_table_name: users ;;
 
   dimension: id {
     primary_key: yes
@@ -106,11 +106,11 @@ view: users {
     type: number
    # required_fields: [email]
     sql:  {% if users.email._is_selected %}
-    (SELECT count(products.category) as c FROM demo_db.order_items  AS order_items
+    (SELECT count(products.category) as c FROM order_items  AS order_items
 LEFT JOIN demo_db.inventory_items  AS inventory_items ON order_items.inventory_item_id = inventory_items.id
-LEFT JOIN demo_db.orders  AS orders ON order_items.order_id = orders.id
-LEFT JOIN demo_db.products  AS products ON inventory_items.product_id = products.id
-LEFT JOIN demo_db.users  AS users ON orders.user_id = users.id
+LEFT JOIN orders  AS orders ON order_items.order_id = orders.id
+LEFT JOIN products  AS products ON inventory_items.product_id = products.id
+LEFT JOIN users  AS users ON orders.user_id = users.id
 WHERE users.email = `users.email`
 )
 {% else %}

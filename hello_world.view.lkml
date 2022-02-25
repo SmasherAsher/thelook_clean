@@ -1,5 +1,5 @@
 view: hello_world {
-  sql_table_name: demo_db.HELLO_WORLD ;;
+  sql_table_name: HELLO_WORLD ;;
 
   dimension: lifetime_orders {
     type: number
